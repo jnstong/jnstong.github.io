@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RPS with VueJS</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+  <section class="row">
+    <div class="small-6 columns">
+      <h1 class="text-center">PLAYER</h1>
+      <div class="wins">
+        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: (playerScore*10)+'%'}">
+            {{playerScore}}
+        </div>
+      </div>
+    </div>
+    <div class="small-6 columns">
+      <h1 class="text-center">COMPUTER</h1>
+      <div class="wins">
+        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: (computerScore*10)+'%'}">
+            {{computerScore}}
+        </div>
+      </div>
+    </div>
+  </section>
+  <template>
+    <section class="row controls" v-if="first">
+      <div class="small-12 columns" >
+        <button id="start-game" @click = "restart()">START NEW GAME</button>
+      </div>
+    </section>
+      <section class="row controls" v-else>
+      <div class="small-12 columns" >
+        <button id="rock" @click = "compare('Rock')">ROCK</button>
+        <button id="paper" @click="compare('Paper')">PAPER</button>
+        <button id="scissors" @click="compare('Scissors')">SCISSORS </button>
+        <button id="restart" @click="restart()">RESTART</button>
+      </div>
+      <br>
+           <div>
+               Money: {{money}}
+               <br>
+               Bet: <input type="number" v-model="bet" max="money" min="1">
+           </div>
+    </section>
+  </template>
+  <section class="row log" v-if="results.length != 0">
+    <div class="small-12 columns">
+
+      <ul>
+        <li v-for="values in results" :class="values.winner + '-turn'">
+          {{values.text}}
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

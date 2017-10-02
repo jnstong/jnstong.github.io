@@ -9,25 +9,19 @@
 <body>
 <div id="app">
   <section class="row">
-    <div class="small-6 columns">
-      <h1 class="text-center">PLAYER</h1>
+    <div >
+      <h1 class="text-center">High Score: {{highScore}}</h1>
+        <h2 class = "text-center">Money: {{money}}</h2>
       <div class="wins">
-        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: (playerScore*10)+'%'}">
-            {{playerScore}}
-        </div>
-      </div>
-    </div>
-    <div class="small-6 columns">
-      <h1 class="text-center">COMPUTER</h1>
-      <div class="wins">
-        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: (computerScore*10)+'%'}">
-            {{computerScore}}
+          <!-- displays a bar in proportion to what the current score is compare to what the high score is-->
+        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: displayBar+'%'}">
+            {{money}}/{{highScore}}
         </div>
       </div>
     </div>
   </section>
   <template>
-    <section class="row controls" v-if="first">
+    <section class="row controls" v-if="startScreen">
       <div class="small-12 columns" >
         <button id="start-game" @click = "restart()">START NEW GAME</button>
       </div>
@@ -41,9 +35,10 @@
       </div>
       <br>
            <div>
-               Money: {{money}}
+               Bet: {{bet}}
                <br>
-               Bet: <input type="number" v-model="bet" max="money" min="1">
+               <!-- slider bar that the player uses to choose their bet value-->
+               <input type="range" step="1" v-model.number="bet" :min="minimumBet" :max="money">
            </div>
     </section>
   </template>

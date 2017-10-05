@@ -1,58 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>RPS with VueJS</title>
-    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
-<div id="app">
-  <section class="row">
-    <div >
-      <h1 class="text-center">High Score: {{highScore}}</h1>
-        <h2 class = "text-center">Money: {{money}}</h2>
-      <div class="wins">
-          <!-- displays a bar in proportion to what the current score is compare to what the high score is-->
-        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: displayBar+'%'}">
-            {{money}}/{{highScore}}
-        </div>
-      </div>
-    </div>
-  </section>
-  <template>
-    <section class="row controls" v-if="startScreen">
-      <div class="small-12 columns" >
-        <button id="start-game" @click = "restart()">START NEW GAME</button>
-      </div>
-    </section>
-      <section class="row controls" v-else>
-      <div class="small-12 columns" >
-        <button id="rock" @click = "compare('Rock')">ROCK</button>
-        <button id="paper" @click="compare('Paper')">PAPER</button>
-        <button id="scissors" @click="compare('Scissors')">SCISSORS </button>
-        <button id="restart" @click="restart()">RESTART</button>
-      </div>
-      <br>
-           <div>
-               Bet: {{bet}}
-               <br>
-               <!-- slider bar that the player uses to choose their bet value-->
-               <input type="range" step="1" v-model.number="bet" :min="minimumBet" :max="money">
-           </div>
-    </section>
-  </template>
-  <section class="row log" v-if="results.length != 0">
-    <div class="small-12 columns">
-
-      <ul>
-        <li v-for="values in results" :class="values.winner + '-turn'">
-          {{values.text}}
-        </li>
-      </ul>
-    </div>
-  </section>
-</div>
-<script src="app.js"></script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>rps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
 </html>
